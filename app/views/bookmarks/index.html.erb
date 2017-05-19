@@ -15,10 +15,11 @@
       </tr>
 
       <% @bookmarks.each do |bookmark| %>
+
+      <% if current_user.id == bookmark.user_id %>
       <tr>
         <td>
-          <% id = bookmark.movie_id %>
-          <%= Movie.find(id).title %>
+          <%= Movie.find(bookmark.movie_id).title %>
         </td>
         <td>
           <a href="/movies/<%= bookmark.movie_id %>" class="btn btn-primary">Show Movie</a>
@@ -26,6 +27,8 @@
           <a href="/delete_bookmark/<%= bookmark.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>
       </tr>
+      <% end %>
+
       <% end %>
     </table>
   </div>

@@ -1,7 +1,9 @@
 class BookmarksController < ApplicationController
+
   def index
     @bookmarks = Bookmark.all
-
+@bookmarks = Bookmarks.where(:user_id => current_user.id)
+# could have done associations and then current_user.bookmarks
     render("bookmarks/index.html.erb")
   end
 
